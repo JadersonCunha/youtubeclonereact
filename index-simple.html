@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Clone - React</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        const videosData = [
+            {
+                id: 1,
+                title: "Como Tocar Violão - Aula Completa para Iniciantes",
+                thumbnail: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=225&fit=crop",
+                category: "musica",
+                channel: "MusicMaster",
+                channelInitial: "M",
+                views: "1.2M visualizações",
+                description: "Aprenda a tocar violão do zero com esta aula completa."
+            },
+            {
+                id: 2,
+                title: "iPhone 15 Pro Max - Review Completo",
+                thumbnail: "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=400&h=225&fit=crop",
+                category: "tecnologia",
+                channel: "TechReview",
+                channelInitial: "T",
+                views: "850K visualizações",
+                description: "Análise completa do novo iPhone 15 Pro Max."
+            },
+            {
+                id: 3,
+                title: "Os Melhores Filmes de 2024 - Top 10",
+                thumbnail: "https://images.unsplash.com/photo-1489599904472-af35ff2c7c3f?w=400&h=225&fit=crop",
+                category: "entretenimento",
+                channel: "CineClub",
+                channelInitial: "C",
+                views: "2.1M visualizações",
+                description: "Nossa seleção dos 10 melhores filmes lançados em 2024."
+            }
+        ];
+
+        function Header({ onMenuClick }) {
+            const [showMobileSearch, setShowMobileSearch] = useState(false);
+
+            return (
+                <header className="bg-white shadow-sm border-b px-4 py-3 fixed top-0 left-0 right-0 z-50">
+                    <div className="flex items-center justify-between lg:justify-start">
+                        <div className="flex items-center space-x-4">
+                            <button onClick={onMenuClick} className="p-2 hover:bg-gray-100 rounded-full">
+                                <i data-lucide="menu" className="w-5 h-5"></i>
+                            </button>
+                            <h1 className="text-xl font-bold text-red-600">YouTube</h1>
+                        </div>
+                        
+                        <div className="hidden md:flex flex-1 max-w-2xl mx-4">
+                            <div className="relative w-full">
+                                <input type="text" placeholder="Pesquisar" className="w-full px-4 py-2 border rounded-full focus:outline-none focus:border-blue-500" />
+                                <button className="absolute right-3 top-2.5">
+                                    <i data-lucide="search" className="w-4 h-4 text-gray-500"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div className="flex items-center space-x-2">
+                            <button onClick={() => setShowMobileSearch(!showMobileSearch)} className="md:hidden p-2 hover:bg-gray-100 rounded-full">
+                                <i data-lucide="search" className="w-5 h-5"></i>
+                            </button>
+                            <button className="hidden sm:block p-2 hover:bg-gray-100 rounded-full">
+                                <i data-lucide="video" className="w-5 h-5"></i>
+                            </button>
+                            <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white text-sm font-bold">U</div>
+                        </div>
+                    </div>
+                    
+                    {showMobileSearch && (
+                        <div className="md:hidden mt-3">
+                            <div className="relative">
+                                <input type="text" placeholder="Pesquisar" className="w-full px-4 py-2 border rounded-full focus:outline-none focus:border-blue-500" />
+                                <button className="absolute right-3 top-2.5">
+                                    <i data-lucide="search" className="w-4 h-4 text-gray-500"></i>
+                                </button>
+                            </div>
+                        </div>
+                    )}
+                </header>
+            );
+        }
+
+        function VideoCard({ video, onClick }) {
+            return (
+                <div className="cursor-pointer group" onClick={() => onClick(video)}>
+                    <div className="relative overflow-hidden rounded-lg mb-3">
+                        <img src={video.thumbnail} alt={video.title} className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-200" />
+                        <div className="absolute bottom-2 right-2 bg-black bg-opacity-80 text-white text-xs px-2 py-1 rounded">5:30</div>
+                    </div>
+                    <div className="flex space-x-3">
+                        <div className="w-9 h-9 bg-blue-500 rounded-full flex items-center justify-center text-white text-sm font-bold flex-shrink-0">
+                            {video.channelInitial}
+                        </div>
+                        <div className="flex-1 min-w-0">
+                            <h3 className="font-medium text-gray-900 text-sm leading-5 mb-1">{video.title}</h3>
+                            <p className="text-gray-600 text-xs mb-1">{video.channel}</p>
+                            <p className="text-gray-600 text-xs">{video.views} • há 2 dias</p>
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+
+        function App() {
+            const [sidebarOpen, setSidebarOpen] = useState(false);
+            const [selectedCategory, setSelectedCategory] = useState('all');
+            const [selectedVideo, setSelectedVideo] = useState(null);
+
+            const filteredVideos = selectedCategory === 'all' ? videosData : videosData.filter(video => video.category === selectedCategory);
+
+            useEffect(() => {
+                lucide.createIcons();
+            }, []);
+
+            return (
+                <div className="bg-gray-100 min-h-screen">
+                    <Header onMenuClick={() => setSidebarOpen(!sidebarOpen)} />
+                    
+                    <main className="pt-16 p-4">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+                            {filteredVideos.map(video => (
+                                <VideoCard key={video.id} video={video} onClick={setSelectedVideo} />
+                            ))}
+                        </div>
+                    </main>
+
+                    {selectedVideo && (
+                        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4" onClick={() => setSelectedVideo(null)}>
+                            <div className="bg-white rounded-lg max-w-2xl w-full" onClick={e => e.stopPropagation()}>
+                                <div className="p-6">
+                                    <div className="flex justify-between items-start mb-4">
+                                        <h2 className="text-xl font-bold text-gray-800">{selectedVideo.title}</h2>
+                                        <button onClick={() => setSelectedVideo(null)} className="p-1 hover:bg-gray-100 rounded-full">
+                                            <i data-lucide="x" className="w-5 h-5"></i>
+                                        </button>
+                                    </div>
+                                    <img src={selectedVideo.thumbnail} alt={selectedVideo.title} className="w-full h-64 object-cover rounded-lg mb-4" />
+                                    <p className="text-gray-700">{selectedVideo.description}</p>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            );
+        }
+
+        ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+</body>
+</html>
