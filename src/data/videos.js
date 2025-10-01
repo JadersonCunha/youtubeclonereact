@@ -22,7 +22,7 @@ export const videosData = [
     {
         id: 3,
         title: "Os Melhores Filmes de 2024 - Top 10",
-        thumbnail: "https://images.unsplash.com/photo-1489599904472-af35ff2c7c3f?w=400&h=225&fit=crop",
+        thumbnail: "/images.jfif",
         category: "entretenimento",
         channel: "CineClub",
         channelInitial: "C",
