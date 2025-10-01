@@ -47,37 +47,37 @@
         <div class="p-4">
             <h2 class="font-semibold text-gray-800 mb-4">Categorias</h2>
             <nav class="space-y-2">
-                <a href="#" class="block px-3 py-2 rounded-lg hover:bg-gray-100 flex items-center space-x-3">
+                <a href="#" onclick="filterVideos('todos')" class="block px-3 py-2 rounded-lg hover:bg-gray-100 flex items-center space-x-3">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"></path>
                     </svg>
                     <span>Todos</span>
                 </a>
-                <a href="#" class="block px-3 py-2 rounded-lg hover:bg-gray-100 flex items-center space-x-3">
+                <a href="#" onclick="filterVideos('musica')" class="block px-3 py-2 rounded-lg hover:bg-gray-100 flex items-center space-x-3">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"></path>
                     </svg>
                     <span>Música</span>
                 </a>
-                <a href="#" class="block px-3 py-2 rounded-lg hover:bg-gray-100 flex items-center space-x-3">
+                <a href="#" onclick="filterVideos('tecnologia')" class="block px-3 py-2 rounded-lg hover:bg-gray-100 flex items-center space-x-3">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
                     </svg>
                     <span>Tecnologia</span>
                 </a>
-                <a href="#" class="block px-3 py-2 rounded-lg hover:bg-gray-100 flex items-center space-x-3">
+                <a href="#" onclick="filterVideos('filmes')" class="block px-3 py-2 rounded-lg hover:bg-gray-100 flex items-center space-x-3">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
                     </svg>
                     <span>Filmes</span>
                 </a>
-                <a href="#" class="block px-3 py-2 rounded-lg hover:bg-gray-100 flex items-center space-x-3">
+                <a href="#" onclick="filterVideos('esportes')" class="block px-3 py-2 rounded-lg hover:bg-gray-100 flex items-center space-x-3">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                     </svg>
                     <span>Esportes</span>
                 </a>
-                <a href="#" class="block px-3 py-2 rounded-lg hover:bg-gray-100 flex items-center space-x-3">
+                <a href="#" onclick="filterVideos('entretenimento')" class="block px-3 py-2 rounded-lg hover:bg-gray-100 flex items-center space-x-3">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4V2a1 1 0 011-1h8a1 1 0 011 1v2M7 4h10M7 4l-2 16h14L17 4M9 9v6M15 9v6"></path>
                     </svg>
@@ -94,7 +94,7 @@
     <main class="p-4">
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             <!-- Video 1 -->
-            <div class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+            <div class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow video-card" data-category="musica">
                 <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=225&fit=crop" alt="Violão" class="w-full h-48 object-cover">
                 <div class="p-3">
                     <div class="flex space-x-3">
@@ -109,7 +109,7 @@
             </div>
 
             <!-- Video 2 -->
-            <div class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+            <div class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow video-card" data-category="tecnologia">
                 <img src="https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=400&h=225&fit=crop" alt="iPhone" class="w-full h-48 object-cover">
                 <div class="p-3">
                     <div class="flex space-x-3">
@@ -124,7 +124,7 @@
             </div>
 
             <!-- Video 3 -->
-            <div class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+            <div class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow video-card" data-category="filmes">
                 <img src="public/images.jfif" alt="Filmes" class="w-full h-48 object-cover">
                 <div class="p-3">
                     <div class="flex space-x-3">
@@ -139,7 +139,7 @@
             </div>
 
             <!-- Video 4 -->
-            <div class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+            <div class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow video-card" data-category="esportes">
                 <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=400&h=225&fit=crop" alt="Futebol" class="w-full h-48 object-cover">
                 <div class="p-3">
                     <div class="flex space-x-3">
@@ -154,7 +154,7 @@
             </div>
 
             <!-- Video 5 -->
-            <div class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+            <div class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow video-card" data-category="tecnologia">
                 <img src="https://images.unsplash.com/photo-1627398242454-45a1465c2479?w=400&h=225&fit=crop" alt="JavaScript" class="w-full h-48 object-cover">
                 <div class="p-3">
                     <div class="flex space-x-3">
@@ -169,7 +169,7 @@
             </div>
 
             <!-- Video 6 -->
-            <div class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+            <div class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow video-card" data-category="musica">
                 <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=225&fit=crop" alt="Música" class="w-full h-48 object-cover">
                 <div class="p-3">
                     <div class="flex space-x-3">
@@ -178,6 +178,36 @@
                             <h3 class="font-medium text-gray-900 text-sm mb-1">Top 10 Músicas Mais Tocadas 2024</h3>
                             <p class="text-gray-600 text-xs mb-1">HitsChart</p>
                             <p class="text-gray-600 text-xs">4.2M visualizações • há 2 semanas</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Video 7 - Esportes -->
+            <div class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow video-card" data-category="esportes">
+                <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=400&h=225&fit=crop" alt="Esportes" class="w-full h-48 object-cover">
+                <div class="p-3">
+                    <div class="flex space-x-3">
+                        <div class="w-9 h-9 bg-orange-500 rounded-full flex items-center justify-center text-white text-sm font-bold flex-shrink-0">E</div>
+                        <div class="flex-1">
+                            <h3 class="font-medium text-gray-900 text-sm mb-1">Melhores Jogadas do Futebol 2024</h3>
+                            <p class="text-gray-600 text-xs mb-1">EsportesTV</p>
+                            <p class="text-gray-600 text-xs">1.8M visualizações • há 4 dias</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Video 8 - Filmes -->
+            <div class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow video-card" data-category="filmes">
+                <img src="https://images.unsplash.com/photo-1440404653325-ab127d49abc1?w=400&h=225&fit=crop" alt="Cinema" class="w-full h-48 object-cover">
+                <div class="p-3">
+                    <div class="flex space-x-3">
+                        <div class="w-9 h-9 bg-indigo-500 rounded-full flex items-center justify-center text-white text-sm font-bold flex-shrink-0">F</div>
+                        <div class="flex-1">
+                            <h3 class="font-medium text-gray-900 text-sm mb-1">Trailers dos Filmes Mais Esperados</h3>
+                            <p class="text-gray-600 text-xs mb-1">FilmesHD</p>
+                            <p class="text-gray-600 text-xs">2.5M visualizações • há 1 semana</p>
                         </div>
                     </div>
                 </div>
@@ -212,6 +242,20 @@
             
             sidebar.classList.add('-translate-x-full');
             overlay.classList.add('hidden');
+        }
+        
+        function filterVideos(category) {
+            const videos = document.querySelectorAll('.video-card');
+            
+            videos.forEach(video => {
+                if (category === 'todos' || video.dataset.category === category) {
+                    video.style.display = 'block';
+                } else {
+                    video.style.display = 'none';
+                }
+            });
+            
+            closeSidebar();
         }
     </script>
 </body>
